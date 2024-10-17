@@ -1,6 +1,7 @@
-import api from "@/Api/api";
+
+import api from "@/config/api";
 import * as actionTypes from "./ActionTypes";
-import { API_BASE_URL } from "@/config/api";
+
 import { type } from "os";
 
 export const sendMessage = (messageData) => {
