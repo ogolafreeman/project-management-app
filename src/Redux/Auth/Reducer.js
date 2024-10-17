@@ -8,7 +8,7 @@ const initialState={
     projectSize:0,
 }
 export const authReducer=(state=initialState,action)=>{
-    switch (action) {
+    switch (action.type) {
         case REGISTER_REQUEST:
         case LOGIN_REQUEST:
         case GET_USER_REQUEST:
