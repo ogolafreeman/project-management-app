@@ -12,7 +12,44 @@ export const fetchIssues = (id) => {
                 issues:response.data,
             });
         } catch (error) {
+            dispatch({
+                type: actionTypes.FETCH_ISSUES_FAILURE,
+                error: error.massage,
+            });
+            
+        }
+    };
+};
+export const fetchIssueById = (id) => {
+    return async (dispatch) =>{
+        dispatch({type: actionTypes.FETCH_ISSUES_BY_ID_REQUEST});
+        try {
+            const response = await api.get(`/api/issues/${id}`);
+            console.log("fetch issue by id", response.data);
+            dispatch({
+                type: actionTypes.FETCH_ISSUES_BY_ID_SUCCESS,
+                issues: response.data
+            });
+        } catch (error) {
+            dispatch({
+                type: actionTypes.FETCH_ISSUES_BY_ID_FAILURE,
+                error: error.message,
+            });
+        }
+    };
+};
+export const updateIssueStatus = ({id,status}) => {
+    return async (dispatch) => {
+        dispatch({type: actionTypes.UPDATE_ISSUE_STATUS_REQUEST});
+        try {
+            const response = await api.put(`/api/issue/${id}/status/${status}`);
+            console.log("update issue status", response.data);
+            dispatch({
+                type: actionTypes.UPDATE_ISSUE_STATUS_SUCCESS,
+                issues: response.data
+            });
+        } catch (error) {
             
         }
     }
-} 
+}
